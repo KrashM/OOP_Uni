@@ -1,24 +1,25 @@
 #ifndef DICTIONARY
 #define DICTIONARY
+#define MAX_CAPACITY 500
 #include "Record.h"
 
 class Dictionary{
 
     private:
-        Record *records = new Record[500];
+        Record records[MAX_CAPACITY];
         int size;
 
     public:
-        Dictionary(Record *records, int size);
+        Dictionary(Record records[], int size);
         Dictionary();
-        ~Dictionary();
 
-        void add(const Record &newRecord);
-        void sort();
+        bool add(const Record &newRecord);
+        bool remove(const char *word);
         const char* findMeaning(const char *word);
         const char* getByIndex(int index);
         char* toString();
-        bool remove(const char *word);
+        int getSize();
+        void sort();
 
 };
 

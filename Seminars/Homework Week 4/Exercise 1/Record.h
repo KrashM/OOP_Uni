@@ -4,7 +4,7 @@
 class Record{
 
     private:
-        const char *word, *meaning;
+        char *word, *meaning;
 
     public:
         Record(const char *word, const char *meaning);
@@ -12,11 +12,16 @@ class Record{
         Record();
         ~Record();
 
+        Record operator = (const Record &rec);
+
         void setWord(const char *word);
         void setMeaning(const char *meaning);
-        const char* getMeaning();
+        static void swap(Record &rec1, Record &rec2);
+        const char *getWord();
+        const char *getMeaning();
         char *toString();
-        bool compare(const char *word);
+        bool equal(const char *word);
+        static bool compare(Record &rec1, Record &rec2);
 
 };
 
