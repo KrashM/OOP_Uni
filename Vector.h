@@ -23,8 +23,10 @@ class Vector{
         T &operator [](const unsigned index);
 
         const bool isEmpty() const;
+        const bool contains(const T &search) const;
         const unsigned getCapacity() const;
         const unsigned getSize() const;
+        const unsigned getIndex(const T &element) const;
         T getAt(unsigned index) const;
         T getFirst() const;
         T getLast() const;
@@ -34,7 +36,10 @@ class Vector{
         void pushBack(T element);
         void insert(unsigned index, T element);
         void erase(T element);
+        void sort();
         const char *toString() const;
+
+        friend void swap(const T &A, const T &B);
 
 };
 
@@ -67,14 +72,32 @@ template <typename T>
 Vector<T>::~Vector(){ delete[] this -> V; }
 
 template <typename T>
-T &Vector<T>::operator [](const unsigned index){ return *this -> V[index]; }
+T &Vector<T>::operator [](const unsigned index){ return this -> V[index]; }
 
 template <typename T>
 const bool Vector<T>::isEmpty() const{ return this -> SIZE == 0; }
 template <typename T>
+const bool Vector<T>::contains(const T &search) const{
+
+    for(size_t i = 0; i < this -> SIZE; i++)
+        if(this -> V[i] == search) return true;
+    return false;
+    
+}
+template <typename T>
 const unsigned Vector<T>::getCapacity() const{ return this -> CAPACITY; }
 template <typename T>
 const unsigned Vector<T>::getSize() const{ return this -> SIZE; }
+template <typename T>
+const unsigned Vector<T>::getIndex(const T &element) const{
+
+    for(int i = 0; i < this -> SIZE; i++)
+        if(this -> V[i] == element)
+            return i;
+
+    return -1;
+
+}
 
 template <typename T>
 T Vector<T>::getAt(unsigned index) const{
@@ -166,6 +189,16 @@ void Vector<T>::erase(T element){
 }
 
 template <typename T>
+void Vector<T>::sort(){
+
+    for(int i = 0; i < this -> SIZE - 1; i++)
+        for(int j = i + 1; j < this -> SIZE; j++)
+            if(this -> V[i] > this -> V[j])
+                swap(this -> V[i], this -> V[j]);
+
+}
+
+template <typename T>
 const char *Vector<T>::toString() const{
 
     char *result = new char[1024];
@@ -174,5 +207,14 @@ const char *Vector<T>::toString() const{
     std::cout << typeid(int).name() << '\n';
 
     return result;
+
+}
+
+template <typename T>
+void swap(const T &A, const T &B){
+
+    T temp = A;
+    A = B;
+    B = temp;
 
 }
