@@ -1,8 +1,9 @@
-#include "Subject.h"
-#pragma once 
+#pragma once
 
-class Grade
-{
+#include "Subject.h"
+
+class Grade{
+
     private:
         Subject subject;
         short grade;
@@ -12,5 +13,5 @@ class Grade
         Grade(const Subject subject, const short grade);
 
         const char *toString() const;
-};
 
+};

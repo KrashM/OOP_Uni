@@ -1,10 +1,9 @@
-#pragma once 
+#pragma once
 
 class Subject{
 
     private:
-        char *name;
-        char *description;
+        char *name, *description;
 
     public:
         Subject();
@@ -16,4 +15,3 @@ class Subject{
         const char *toString() const;
 
 };
-

@@ -1,5 +1,6 @@
+#pragma once
+
 #include "Subject.h"
-#pragma once 
 
 class Teacher
 {
@@ -15,5 +16,5 @@ class Teacher
 
         const bool operator ==(const Teacher &other);
         const char *toString() const;
+        
 };
-

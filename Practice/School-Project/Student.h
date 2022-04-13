@@ -23,4 +23,3 @@ class Student{
         const char *toString() const;
 
 };
-
