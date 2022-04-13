@@ -1,5 +1,5 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "doctest.h"
+#include "../../doctest.h"
 #include "Subject.h"
 #include "Student.h"
 #include <cstring>

@@ -3,7 +3,7 @@
 #include "Class.h"
 #include "Grade.h"
 #include "Date.h"
-#include "Vector.h"
+#include "../../Vector.h"
 
 class Student{
 
