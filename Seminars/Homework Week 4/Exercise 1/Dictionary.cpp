@@ -41,6 +41,8 @@ const char* Dictionary::findMeaning(const char *word){
         if(this -> records[i].equal(word))
             return this -> records[i].getMeaning();
 
+    return nullptr;
+
 }
 
 const char* Dictionary::getByIndex(int index){ return this -> records[index].getMeaning(); }

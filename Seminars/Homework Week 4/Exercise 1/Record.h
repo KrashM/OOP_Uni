@@ -12,7 +12,7 @@ class Record{
         Record();
         ~Record();
 
-        Record operator = (const Record &rec);
+        Record &operator = (const Record &rec);
 
         void setWord(const char *word);
         void setMeaning(const char *meaning);

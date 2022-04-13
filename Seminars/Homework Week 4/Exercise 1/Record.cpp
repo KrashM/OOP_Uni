@@ -39,13 +39,19 @@ Record::~Record(){
 
 }
 
-Record Record::operator = (const Record &rec){
+Record &Record::operator =(const Record &rec){
 
-    int wordLen = strlen(rec.word), meaningLen = strlen(rec.meaning);
-    for(int i = 0; i < wordLen; i++) this -> word[i] = rec.word[i];
-    this -> word[wordLen] = '\0';
-    for(int i = 0; i < meaningLen; i++) this -> meaning[i] = rec.meaning[i];
-    this -> meaning[meaningLen] = '\0';
+    if(this != &rec){
+
+        int wordLen = strlen(rec.word), meaningLen = strlen(rec.meaning);
+        for(int i = 0; i < wordLen; i++) this -> word[i] = rec.word[i];
+        this -> word[wordLen] = '\0';
+        for(int i = 0; i < meaningLen; i++) this -> meaning[i] = rec.meaning[i];
+        this -> meaning[meaningLen] = '\0';
+
+    }
+
+    return *this;
 
 }
 

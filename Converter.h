@@ -1,0 +1,14 @@
+#ifndef CONVERTER
+#define CONVERTER
+
+class Converter{
+
+    public:
+        static unsigned pow(unsigned n, unsigned power);
+        static unsigned numberOfDigits(int n);
+        static const char *doubleToString(const double number);
+        static const char *intToString(const int number);
+
+};
+
+#endif
