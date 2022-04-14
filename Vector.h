@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Converter.h"
 #include <cstring>
 #include <iostream>
 #include <typeinfo>
+#include "Converter.h"
 
 template <typename T>
 class Vector{
@@ -14,7 +14,7 @@ class Vector{
 
         void reset();
         void resize();
-
+        void swap(T &A, T &B);
     
     public:
         Vector();
@@ -39,8 +39,6 @@ class Vector{
         void sort();
         const char *toString() const;
 
-        friend void swap(const T &A, const T &B);
-
 };
 
 template <typename T>
@@ -63,6 +61,15 @@ void Vector<T>::resize(){
     for(unsigned i = 0; i < this -> SIZE; i++) temp[i] = this -> V[i];
     delete[] this -> V;
     this -> V = temp;
+
+}
+
+template <typename T>
+void Vector<T>::swap(T &A, T &B){
+
+    T temp = A;
+    A = B;
+    B = temp;
 
 }
 
@@ -138,9 +145,11 @@ template <typename T>
 T Vector<T>::removeAt(unsigned index){
 
     if(isEmpty() || index >= SIZE) throw -1;
+    T element = this -> V[index];
     --SIZE;
     for(; index < this -> SIZE; index++) this -> V[index] = this -> V[index + 1];
     this -> resize();
+    return element;
 
 }
 
@@ -207,14 +216,5 @@ const char *Vector<T>::toString() const{
     std::cout << typeid(int).name() << '\n';
 
     return result;
-
-}
-
-template <typename T>
-void swap(const T &A, const T &B){
-
-    T temp = A;
-    A = B;
-    B = temp;
 
 }

@@ -52,4 +52,6 @@ const char *Student::toString() const{
     strcat(result, "Grades: ");
     strcat(result, this -> grades.toString());
 
+    return result;
+
 }

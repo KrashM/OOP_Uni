@@ -13,6 +13,8 @@ const bool Dispenser::fillBeverage(const Beverage &bev, double lieters){
     if(!this -> beverages.contains(bev)) return false;
     this -> beverages[this -> beverages.getIndex(bev)].addLieters(lieters);
 
+    return true;
+
 }
 
 const double Dispenser::buyBeverage(const char *bevName, const double money, const double quantity){

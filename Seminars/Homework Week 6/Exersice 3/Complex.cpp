@@ -1,5 +1,5 @@
 #include "Complex.h"
-#include "../../../Converter.cpp"
+#include "../../../Converter.h"
 #include <cstring>
 
 Complex::Complex(int real, int imag){

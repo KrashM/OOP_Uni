@@ -1,5 +1,5 @@
 #include "Laptop.h"
-#include "../../../Converter.cpp"
+#include "../../../Converter.h"
 #include <cstring>
 
 Laptop::Laptop(){
