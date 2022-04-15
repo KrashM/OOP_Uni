@@ -5,11 +5,11 @@ using std::ios;
 
 size_t getFileSize(ofstream &out){
 
-    size_t currentPosition = in.tellp();
-	out.seekg(ios::beg, ios::end);
+    size_t currentPosition = out.tellp();
+	out.seekp(ios::beg, ios::end);
     size_t size = out.tellp();
 
-    out.seekp(ios::beg, currentPosition);
+    out.seekp(currentPosition);
 
 	return size;
 
@@ -21,12 +21,13 @@ void changeContent(ofstream &out){
 
     size_t size = getFileSize(out);
 
-    for(int i = 0; i < size; i++){
+    out << "Hello world";
+    // for(int i = 0; i < size; i++){
 
-        out.put('H');
-        out.seekp(ios::beg, i);
+    //     out.seekp(i);
+    //     out.put('H');
 
-    }
+    // }
 
     out.close();
 
