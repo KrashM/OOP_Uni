@@ -65,3 +65,5 @@ const char *Subject::toString() const{
     return result;
     
 }
+
+const char *Subject::getName() const{ return this -> name; }

@@ -11,6 +11,9 @@ class Grade{
     public:
         Grade();
         Grade(const Subject subject, const short grade);
+        Grade(const Grade &other);
+
+        Grade &operator =(const Grade &other);
 
         const char *toString() const;
 

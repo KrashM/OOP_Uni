@@ -13,5 +13,6 @@ class Subject{
 
         const Subject &operator =(const Subject& s);
         const char *toString() const;
+        const char *getName() const;
 
 };

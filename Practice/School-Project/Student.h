@@ -3,7 +3,7 @@
 #include "Class.h"
 #include "Grade.h"
 #include "Date.h"
-#include "../../Vector.h"
+#include <Vector>
 
 class Student{
 
@@ -11,11 +11,13 @@ class Student{
         char *firstName, *lastName, *email, *phone;
         Date birthDate;
         Class _class;
-        Vector<Grade> grades;
+        // Vector<Grade> grades;
+        Grade grades[1024];
+        int numGrades;
 
     public:
         Student();
-        Student(const char *name, const Subject subject, const short experience, const char *email, const char *phone);
+        Student(const char *firstName, const char *lastName, const char *email, const char *phone, const Date &birthDate, const Class &_class, const Grade grades[], const int numGrades);
         Student(const Student &other);
         ~Student();
 

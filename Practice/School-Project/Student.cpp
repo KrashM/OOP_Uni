@@ -11,15 +11,43 @@ Student::Student(){
     this -> phone[0] = '\0';
     this -> email = new char[1];
     this -> email[0] = '\0';
+    this -> numGrades = 0;
 
 }
 
-Student::Student(const char *name, const Subject subject, const short experience, const char *email, const char *phone){
+Student::Student(const char *firstName, const char *lastName, const char *email, const char *phone, const Date &birthDate, const Class &_class, const Grade *grades, const int numGrades){
+
+    this -> firstName = new char[strlen(firstName) + 1];
+    strcpy(this -> firstName, firstName);
+    this -> lastName = new char[strlen(lastName) + 1];
+    strcpy(this -> lastName, lastName);
+    this -> email = new char[strlen(email) + 1];
+    strcpy(this -> email, email);
+    this -> phone = new char[strlen(phone) + 1];
+    strcpy(this -> phone, phone);
+    this -> birthDate = birthDate;
+    this -> _class = _class;
+    this -> numGrades = numGrades;
+    for(int i = 0; i < numGrades; i++)
+        this -> grades[i] = grades[i];
 
 }
 
 Student::Student(const Student &other){
 
+    this -> firstName = new char[strlen(other.firstName) + 1];
+    strcpy(this -> firstName, other.firstName);
+    this -> lastName = new char[strlen(other.lastName) + 1];
+    strcpy(this -> lastName, other.lastName);
+    this -> email = new char[strlen(other.email) + 1];
+    strcpy(this -> email, other.email);
+    this -> phone = new char[strlen(other.phone) + 1];
+    strcpy(this -> phone, other.phone);
+    this -> birthDate = other.birthDate;
+    this -> _class = other._class;
+    this -> numGrades = other.numGrades;
+    for(int i = 0; i < other.numGrades; i++)
+        this -> grades[i] = other.grades[i];
 
 }
 
@@ -39,18 +67,28 @@ const char *Student::toString() const{
 
     strcat(result, "First name: ");
     strcat(result, this -> firstName);
+    strcat(result, "\n");
     strcat(result, "Last name: ");
     strcat(result, this -> lastName);
+    strcat(result, "\n");
     strcat(result, "Birth date: ");
     strcat(result, this -> birthDate.toString());
+    strcat(result, "\n");
     strcat(result, "Email: ");
     strcat(result, this -> email);
+    strcat(result, "\n");
     strcat(result, "Phone: ");
     strcat(result, this -> phone);
+    strcat(result, "\n");
     // strcat(result, "Class: ");
     // strcat(result, this -> _class.toString());
-    strcat(result, "Grades: ");
-    strcat(result, this -> grades.toString());
+    strcat(result, "Grades: \n");
+    for(int i = 0; i < this -> numGrades; i++){
+
+        if(i != 0) strcat(result, ", ");
+        strcat(result, this -> grades[i].toString());
+
+    }
 
     return result;
 
