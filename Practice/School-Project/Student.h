@@ -3,21 +3,19 @@
 #include "Class.h"
 #include "Grade.h"
 #include "Date.h"
-#include <Vector>
+#include "Vector.h"
 
 class Student{
 
     private:
-        char *firstName, *lastName, *email, *phone;
+        Vector<Grade> grades;
         Date birthDate;
         Class _class;
-        // Vector<Grade> grades;
-        Grade grades[1024];
-        int numGrades;
+        char *firstName, *lastName, *email, *phone;
 
     public:
         Student();
-        Student(const char *firstName, const char *lastName, const char *email, const char *phone, const Date &birthDate, const Class &_class, const Grade grades[], const int numGrades);
+        Student(const char *firstName, const char *lastName, const char *email, const char *phone, const Date &birthDate, const Class &_class, const Vector<Grade> grades);
         Student(const Student &other);
         ~Student();
 

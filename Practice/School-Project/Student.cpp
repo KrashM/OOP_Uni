@@ -11,11 +11,10 @@ Student::Student(){
     this -> phone[0] = '\0';
     this -> email = new char[1];
     this -> email[0] = '\0';
-    this -> numGrades = 0;
 
 }
 
-Student::Student(const char *firstName, const char *lastName, const char *email, const char *phone, const Date &birthDate, const Class &_class, const Grade *grades, const int numGrades){
+Student::Student(const char *firstName, const char *lastName, const char *email, const char *phone, const Date &birthDate, const Class &_class, const Vector<Grade> grades){
 
     this -> firstName = new char[strlen(firstName) + 1];
     strcpy(this -> firstName, firstName);
@@ -27,9 +26,7 @@ Student::Student(const char *firstName, const char *lastName, const char *email,
     strcpy(this -> phone, phone);
     this -> birthDate = birthDate;
     this -> _class = _class;
-    this -> numGrades = numGrades;
-    for(int i = 0; i < numGrades; i++)
-        this -> grades[i] = grades[i];
+    this -> grades = grades;
 
 }
 
@@ -45,9 +42,7 @@ Student::Student(const Student &other){
     strcpy(this -> phone, other.phone);
     this -> birthDate = other.birthDate;
     this -> _class = other._class;
-    this -> numGrades = other.numGrades;
-    for(int i = 0; i < other.numGrades; i++)
-        this -> grades[i] = other.grades[i];
+    this -> grades = other.grades;
 
 }
 
@@ -83,12 +78,7 @@ const char *Student::toString() const{
     // strcat(result, "Class: ");
     // strcat(result, this -> _class.toString());
     strcat(result, "Grades: \n");
-    for(int i = 0; i < this -> numGrades; i++){
-
-        if(i != 0) strcat(result, ", ");
-        strcat(result, this -> grades[i].toString());
-
-    }
+    strcat(result, this -> grades.toString());
 
     return result;
 

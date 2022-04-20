@@ -61,3 +61,27 @@ const char *Converter::doubleToString(const double number){
     return result;
 
 }
+
+const char *Converter::floatToString(const float number){
+
+    const unsigned digits = Converter::numberOfDigits((unsigned)number);
+    const bool isNegative = number < 0;
+    unsigned powerOfTen = Converter::pow(10, digits - 1);
+    char *result = new char[digits + 4 + isNegative];
+    if(isNegative) result[0] = '-';
+
+    for(unsigned i = isNegative; i < digits; i++){
+
+        result[i] = '0' + ((unsigned)number / powerOfTen) % 10;
+        powerOfTen /= 10;
+
+    }
+    
+    result[digits] = '.';
+    result[digits + 1] = '0' + (unsigned)(number * 10) % 10;
+    result[digits + 2] = '0' + (unsigned)(number * 100) % 10;
+    result[digits + 3] = '\0';
+
+    return result;
+
+}

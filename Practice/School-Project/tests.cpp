@@ -118,15 +118,21 @@ TEST_SUITE("Testing student class"){
     
     TEST_CASE("Testing parametric constructor"){
 
-        Student s("Hristo", "Kanev", "HristoKanevKrash@gmail.com", "0878686974", Date(22, 6, 2002), Class(), std::initializer_list<Grade>({Grade(Subject("Mathematics", "Very cool"), 6)}).begin(), 1);
-        // std::cout << s.toString() << ' ' << strlen("First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: HristoKanevKrash@gmail.com\nPhone: 0878686974\nGrades: \nSubject: Mathematics ---> Grade: 6") << '\n';
+        Vector<Grade> grades;
+        Grade newGrade = Grade(Subject("Mathematics", "Very cool"), 6);
+        grades.pushBack(newGrade);
+        std::cout << "Cout the vector: " << grades.toString() << '\n';
+        Student s("Hristo", "Kanev", "HristoKanevKrash@gmail.com", "0878686974", Date(22, 6, 2002), Class(), grades);
+        std::cout << s.toString() << ' ' << strlen("First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: HristoKanevKrash@gmail.com\nPhone: 0878686974\nGrades: \nSubject: Mathematics ---> Grade: 6") << '\n';
         CHECK_EQ(strcmp(s.toString(), "First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: HristoKanevKrash@gmail.com\nPhone: 0878686974\nGrades: \nSubject: Mathematics ---> Grade: 6"), 0);
 
     }
     
     TEST_CASE("Testing copy constructor"){
 
-        Student s("Hristo", "Kanev", "HristoKanevKrash@gmail.com", "0878686974", Date(22, 6, 2002), Class(), std::initializer_list<Grade>({Grade(Subject("Mathematics", "Very cool"), 6)}).begin(), 1);
+        Vector<Grade> grades;
+        grades.pushBack(Grade(Subject("Mathematics", "Very cool"), 6));
+        Student s("Hristo", "Kanev", "HristoKanevKrash@gmail.com", "0878686974", Date(22, 6, 2002), Class(), grades);
         Student cpy(s);
         CHECK_EQ(strcmp(cpy.toString(), "First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: HristoKanevKrash@gmail.com\nPhone: 0878686974\nGrades: \nSubject: Mathematics ---> Grade: 6"), 0);
 
@@ -134,8 +140,9 @@ TEST_SUITE("Testing student class"){
     
     TEST_CASE("Testing = operator"){
 
-
-        Student s = Student("Hristo", "Kanev", "HristoKanevKrash@gmail.com", "0878686974", Date(22, 6, 2002), Class(), std::initializer_list<Grade>({Grade(Subject("Mathematics", "Very cool"), 6)}).begin(), 1);
+        Vector<Grade> grades;
+        grades.pushBack(Grade(Subject("Mathematics", "Very cool"), 6));
+        Student s = Student("Hristo", "Kanev", "HristoKanevKrash@gmail.com", "0878686974", Date(22, 6, 2002), Class(), grades);
         CHECK_EQ(strcmp(s.toString(), "First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: HristoKanevKrash@gmail.com\nPhone: 0878686974\nGrades: \nSubject: Mathematics ---> Grade: 6"), 0);
 
     }
