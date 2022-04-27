@@ -1,5 +1,5 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "../../doctest.h"
+#include "../../../../includes/doctest.h"
 #include "Subject.h"
 #include "Student.h"
 #include "Date.h"
@@ -34,8 +34,9 @@ TEST_SUITE("Testing date class"){
     
     TEST_CASE("Testing = operator"){
 
-        Date date = Date(22, 6, 2002);
-        CHECK_EQ(strcmp(date.toString(), "22.6.2002"), 0);
+        Date date(22, 6, 2002), eq;
+        eq = date;
+        CHECK_EQ(strcmp(eq.toString(), "22.6.2002"), 0);
 
     }
 
@@ -67,8 +68,9 @@ TEST_SUITE("Testing grade class"){
     
     TEST_CASE("Testing = operator"){
 
-        Grade g = Grade(Subject("Programming", "The best"), 6);
-        CHECK_EQ(strcmp(g.toString(), "Subject: Programming ---> Grade: 6"), 0);
+        Grade g(Subject("Programming", "The best"), 6), eq;
+        eq = g;
+        CHECK_EQ(strcmp(eq.toString(), "Subject: Programming ---> Grade: 6"), 0);
 
     }
 
@@ -100,8 +102,16 @@ TEST_SUITE("Testing subject class"){
     
     TEST_CASE("Testing = operator"){
 
-        Subject s = Subject("Programming", "The best");
-        CHECK_EQ(strcmp(s.toString(), "Name: Programming\nDescription: The best"), 0);
+        Subject s("Programming", "The best"), eq;
+        eq = s;
+        CHECK_EQ(strcmp(eq.toString(), "Name: Programming\nDescription: The best"), 0);
+
+    }
+
+    TEST_CASE("Testing getName method"){
+
+        Subject s = (Subject("Programming", "The best"));
+        CHECK_EQ(strcmp(s.getName(), "Programming"), 0);
 
     }
 
@@ -119,12 +129,10 @@ TEST_SUITE("Testing student class"){
     TEST_CASE("Testing parametric constructor"){
 
         Vector<Grade> grades;
-        Grade newGrade = Grade(Subject("Mathematics", "Very cool"), 6);
+        Grade newGrade(Subject("Mathematics", "Very cool"), 6);
         grades.pushBack(newGrade);
-        std::cout << "Cout the vector: " << grades.toString() << '\n';
-        Student s("Hristo", "Kanev", "HristoKanevKrash@gmail.com", "0878686974", Date(22, 6, 2002), Class(), grades);
-        std::cout << s.toString() << ' ' << strlen("First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: HristoKanevKrash@gmail.com\nPhone: 0878686974\nGrades: \nSubject: Mathematics ---> Grade: 6") << '\n';
-        CHECK_EQ(strcmp(s.toString(), "First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: HristoKanevKrash@gmail.com\nPhone: 0878686974\nGrades: \nSubject: Mathematics ---> Grade: 6"), 0);
+        Student s("Hristo", "Kanev", "878686974", Date(22, 6, 2002), Class(), grades);
+        CHECK_EQ(strcmp(s.toString(), "First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: Hristo.Kanev@email.bg\nPhone: +359878686974\nGrades: \nSubject: Mathematics ---> Grade: 6"), 0);
 
     }
     
@@ -132,9 +140,9 @@ TEST_SUITE("Testing student class"){
 
         Vector<Grade> grades;
         grades.pushBack(Grade(Subject("Mathematics", "Very cool"), 6));
-        Student s("Hristo", "Kanev", "HristoKanevKrash@gmail.com", "0878686974", Date(22, 6, 2002), Class(), grades);
+        Student s("Hristo", "Kanev", "878686974", Date(22, 6, 2002), Class(), grades);
         Student cpy(s);
-        CHECK_EQ(strcmp(cpy.toString(), "First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: HristoKanevKrash@gmail.com\nPhone: 0878686974\nGrades: \nSubject: Mathematics ---> Grade: 6"), 0);
+        CHECK_EQ(strcmp(cpy.toString(), "First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: Hristo.Kanev@email.bg\nPhone: +359878686974\nGrades: \nSubject: Mathematics ---> Grade: 6"), 0);
 
     }
     
@@ -142,8 +150,9 @@ TEST_SUITE("Testing student class"){
 
         Vector<Grade> grades;
         grades.pushBack(Grade(Subject("Mathematics", "Very cool"), 6));
-        Student s = Student("Hristo", "Kanev", "HristoKanevKrash@gmail.com", "0878686974", Date(22, 6, 2002), Class(), grades);
-        CHECK_EQ(strcmp(s.toString(), "First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: HristoKanevKrash@gmail.com\nPhone: 0878686974\nGrades: \nSubject: Mathematics ---> Grade: 6"), 0);
+        Student s("Hristo", "Kanev", "878686974", Date(22, 6, 2002), Class(), grades), eq;
+        eq = s;
+        CHECK_EQ(strcmp(eq.toString(), "First name: Hristo\nLast name: Kanev\nBirth date: 22.6.2002\nEmail: Hristo.Kanev@email.bg\nPhone: +359878686974\nGrades: \nSubject: Mathematics ---> Grade: 6"), 0);
 
     }
 

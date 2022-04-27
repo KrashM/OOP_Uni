@@ -14,16 +14,20 @@ Student::Student(){
 
 }
 
-Student::Student(const char *firstName, const char *lastName, const char *email, const char *phone, const Date &birthDate, const Class &_class, const Vector<Grade> grades){
+Student::Student(const char *firstName, const char *lastName, const char *phone, const Date &birthDate, const Class &_class, const Vector<Grade> grades){
 
     this -> firstName = new char[strlen(firstName) + 1];
     strcpy(this -> firstName, firstName);
     this -> lastName = new char[strlen(lastName) + 1];
     strcpy(this -> lastName, lastName);
-    this -> email = new char[strlen(email) + 1];
-    strcpy(this -> email, email);
-    this -> phone = new char[strlen(phone) + 1];
-    strcpy(this -> phone, phone);
+    this -> email = new char[strlen(firstName) + strlen(lastName) + 11];
+    strcpy(this -> email, firstName);
+    strcat(this -> email, ".");
+    strcat(this -> email, lastName);
+    strcat(this -> email, "@email.bg");
+    this -> phone = new char[strlen(phone) + 5];
+    strcpy(this -> phone, "+359");
+    strcat(this -> phone, phone);
     this -> birthDate = birthDate;
     this -> _class = _class;
     this -> grades = grades;
@@ -36,8 +40,11 @@ Student::Student(const Student &other){
     strcpy(this -> firstName, other.firstName);
     this -> lastName = new char[strlen(other.lastName) + 1];
     strcpy(this -> lastName, other.lastName);
-    this -> email = new char[strlen(other.email) + 1];
-    strcpy(this -> email, other.email);
+    this -> email = new char[strlen(other.firstName) + strlen(other.lastName) + 11];
+    strcpy(this -> email, other.firstName);
+    strcat(this -> email, ".");
+    strcat(this -> email, other.lastName);
+    strcat(this -> email, "@email.bg");
     this -> phone = new char[strlen(other.phone) + 1];
     strcpy(this -> phone, other.phone);
     this -> birthDate = other.birthDate;
@@ -52,6 +59,31 @@ Student::~Student(){
     delete[] this -> lastName;
     delete[] this -> phone;
     delete[] this -> email;
+
+}
+
+Student &Student::operator =(const Student &other){
+
+    if(this != &other){
+
+        this -> firstName = new char[strlen(other.firstName) + 1];
+        strcpy(this -> firstName, other.firstName);
+        this -> lastName = new char[strlen(other.lastName) + 1];
+        strcpy(this -> lastName, other.lastName);
+        this -> email = new char[strlen(other.firstName) + strlen(other.lastName) + 11];
+        strcpy(this -> email, other.firstName);
+        strcat(this -> email, ".");
+        strcat(this -> email, other.lastName);
+        strcat(this -> email, "@email.bg");
+        this -> phone = new char[strlen(other.phone) + 1];
+        strcpy(this -> phone, other.phone);
+        this -> birthDate = other.birthDate;
+        this -> _class = other._class;
+        this -> grades = other.grades;
+
+    }
+
+    return *this;
 
 }
 

@@ -1,7 +1,6 @@
 #include "Grade.h"
-#include "Converter.h"
+#include "../../../../includes/Converter.h"
 #include <cstring>
-#include <iostream>
 
 Grade::Grade(){
 
@@ -28,8 +27,8 @@ Grade &Grade::operator =(const Grade &other){
 
     if(this != &other){
 
-        this -> subject = subject;
-        this -> grade = grade;
+        this -> subject = other.subject;
+        this -> grade = other.grade;
 
     }
 
@@ -41,8 +40,6 @@ const char *Grade::toString() const{
 
     char *result = new char[1024];
     result[0] = '\0';
-
-    std::cout << "Grade is: " << this -> subject.getName() << ' ' << this -> grade << '\n';
 
     strcat(result, "Subject: ");
     strcat(result, this -> subject.getName());

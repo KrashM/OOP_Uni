@@ -7,10 +7,10 @@ class Date{
 
     public:
         Date();
-        Date(unsigned day, unsigned mounth, unsigned year);
-        Date(const Date &other);
+        Date(unsigned, unsigned, unsigned);
+        Date(const Date &);
 
-        const Date &operator =(const Date &other);
+        const Date &operator =(const Date &);
 
         const char *toString() const;
 

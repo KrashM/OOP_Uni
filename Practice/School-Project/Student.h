@@ -3,7 +3,7 @@
 #include "Class.h"
 #include "Grade.h"
 #include "Date.h"
-#include "Vector.h"
+#include "../../../../includes/Vector.h"
 
 class Student{
 
@@ -15,11 +15,11 @@ class Student{
 
     public:
         Student();
-        Student(const char *firstName, const char *lastName, const char *email, const char *phone, const Date &birthDate, const Class &_class, const Vector<Grade> grades);
-        Student(const Student &other);
+        Student(const char *, const char *, const char *, const Date &, const Class &, const Vector<Grade>);
+        Student(const Student &);
         ~Student();
 
-        const bool operator =(const Student &other);
+        Student &operator =(const Student &);
         const char *toString() const;
 
 };

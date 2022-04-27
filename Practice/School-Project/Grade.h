@@ -10,10 +10,10 @@ class Grade{
 
     public:
         Grade();
-        Grade(const Subject subject, const short grade);
-        Grade(const Grade &other);
+        Grade(const Subject, const short);
+        Grade(const Grade &);
 
-        Grade &operator =(const Grade &other);
+        Grade &operator =(const Grade &);
 
         const char *toString() const;
 

@@ -7,12 +7,12 @@ class Subject{
 
     public:
         Subject();
-        Subject(const char *name, const char *description);
-        Subject(const Subject &other);
+        Subject(const char *, const char *);
+        Subject(const Subject &);
         ~Subject();
 
-        const Subject &operator =(const Subject& s);
-        const char *toString() const;
+        const Subject &operator =(const Subject&);
         const char *getName() const;
+        const char *toString() const;
 
 };
